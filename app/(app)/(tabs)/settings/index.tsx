@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { getAuth, signOut } from "firebase/auth";
 import { Button, Text } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 /**
  * This is the SettingScreen component, which is responsible for displaying the user's settings.
@@ -14,12 +14,12 @@ export default function SettingScreen() {
 
   const logoutUser = () => {
     signOut(auth)
-      .then(() => console.log('User signed out!'))
-      .catch((error) => console.error('Error signing out:', error));
-  }
+      .then(() => console.log("User signed out!"))
+      .catch((error) => console.error("Error signing out:", error));
+  };
 
   const navigation = useNavigation();
-  console.log(navigation)
+  console.log(navigation);
 
   return (
     <View
@@ -29,10 +29,7 @@ export default function SettingScreen() {
         justifyContent: "center",
       }}
     >
-      <Button
-        title="Open Settings"
-        onPress={() => navigation.openDrawer()}
-      />
+      <Button title="Open Settings" onPress={() => navigation.openDrawer()} />
     </View>
   );
 }

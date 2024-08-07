@@ -5,35 +5,38 @@ import { TextInput, Button, Text } from "react-native-paper";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
-export default function LoginScreen() {
-
+/**
+ * This function represents the login screen of a mobile application.
+ * It uses React Native and React Native Paper components to create a user interface for logging in.
+ *
+ * @returns {JSX.Element} - A React Native component representing the login screen.
+ */
+export default function LoginScreen(): JSX.Element {
   const { top } = useSafeAreaInsets();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const auth = getAuth();
 
   const loginUser = async () => {
-    if (!email && !password) return Alert.alert(
-      'Error',
-      'Please fill in all fields',
-    )
+    if (!email && !password)
+      return Alert.alert("Error", "Please fill in all fields");
 
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => router.replace('/(app)/(tabs)')).catch((error) => {
-      const errorMessage = error.message
-      Alert.alert(
-        'Error',
-        errorMessage,
-      );
-
-    })
-  }
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => router.replace("/(app)/(tabs)"))
+      .catch((error) => {
+        const errorMessage = error.message;
+        Alert.alert("Error", errorMessage);
+      });
+  };
 
   return (
     <SafeAreaView
-      style={{ flex: 1, paddingTop: top, justifyContent: 'center' }}>
+      style={{ flex: 1, paddingTop: top, justifyContent: "center" }}
+    >
       <Text
-        style={{ textAlign: 'center', fontWeight: 'bold', paddingBottom: 20 }}>
+        style={{ textAlign: "center", fontWeight: "bold", paddingBottom: 20 }}
+      >
         Sign Into Your Account
       </Text>
 

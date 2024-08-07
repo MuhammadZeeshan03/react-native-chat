@@ -22,7 +22,7 @@ import {
 import { router } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 
-export default function SearchScreen () {
+export default function SearchScreen() {
   const auth = getAuth();
   const db = getFirestore();
   const { top } = useSafeAreaInsets();
@@ -60,7 +60,6 @@ export default function SearchScreen () {
   const handleSubmit = async (text: string) => {
     setUsers(await getSearchResults(text));
   };
-
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: top }}>
@@ -163,6 +162,4 @@ export default function SearchScreen () {
       </TouchableWithoutFeedback>
     </SafeAreaView>
   );
-
-
 }

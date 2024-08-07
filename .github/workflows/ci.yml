@@ -1,0 +1,18 @@
+name: Prettier
+on: [push]
+
+jobs:
+  build:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v1
+      - uses: bahmutov/npm-install@v1
+
+      - run: npm run format
+      - run: git status
+      # commit any changed files
+      #  https://github.com/MuhammadZeeshan03/react-native-chat
+      - uses: MuhammadZeeshan03/react-native-chat@main
+        env: 
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

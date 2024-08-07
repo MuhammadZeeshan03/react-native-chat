@@ -23,6 +23,13 @@ import {
 } from "firebase/firestore";
 import { FontAwesome } from "@expo/vector-icons";
 
+/**
+ * This function is responsible for displaying and managing the chat messages screen.
+ * It handles fetching and updating messages between the current user and another user.
+ *
+ * @param props - The component props.
+ * @returns - A React component for the chat messages screen.
+ */
 export default function ChatMessageScreen() {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [conversationId, setConversationId] = useState<string>("");

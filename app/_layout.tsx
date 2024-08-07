@@ -1,15 +1,19 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-import { initializeApp } from 'firebase/app';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+import "react-native-reanimated";
+import { initializeApp } from "firebase/app";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { getFirestore } from "firebase/firestore";
 import { initializeAuth, getReactNativePersistence } from "firebase/auth";
-import { PaperProvider } from 'react-native-paper';
-import { theme } from '@/theme'
+import { PaperProvider } from "react-native-paper";
+import { theme } from "@/theme";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD4jkfLFtI98WfE7IYz9dKfYd5qLDq22TM",
@@ -17,12 +21,12 @@ const firebaseConfig = {
   projectId: "fir-chat-9b5b8",
   storageBucket: "fir-chat-9b5b8.appspot.com",
   messagingSenderId: "476358116633",
-  appId: "1:476358116633:web:95fd86375813d84a2b3188"
+  appId: "1:476358116633:web:95fd86375813d84a2b3188",
 };
 
 const app = initializeApp(firebaseConfig);
 
-!app && initializeAuth(app, {
+const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
 });
 getFirestore(app);
@@ -42,7 +46,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   useEffect(() => {

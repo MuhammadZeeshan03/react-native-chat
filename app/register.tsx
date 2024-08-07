@@ -5,37 +5,40 @@ import { TextInput, Button, Text } from "react-native-paper";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
-export default function RegisterScreen() {
-
+/**
+ * This is the RegisterScreen component, which is responsible for handling user registration.
+ * It uses React Native and React Native Paper libraries to create a user interface for registering a new account.
+ *
+ * @returns {JSX.Element} - A React Native component for user registration.
+ */
+export default function RegisterScreen(): JSX.Element {
   const { top } = useSafeAreaInsets();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const auth = getAuth();
 
   const registerUser = async () => {
-    if (!email && !password) return Alert.alert(
-      'Error',
-      'Please fill in all fields',
-    )
+    if (!email && !password)
+      return Alert.alert("Error", "Please fill in all fields");
 
-    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      router.replace('/(app)/(tabs)')
-    }).catch((error) => {
-      const errorMessage = error.message
-      Alert.alert(
-        'Error',
-        errorMessage,
-      );
-
-    })
-  }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        router.replace("/(app)/(tabs)");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        Alert.alert("Error", errorMessage);
+      });
+  };
 
   return (
     <SafeAreaView
-      style={{ flex: 1, paddingTop: top, justifyContent: 'center' }}>
+      style={{ flex: 1, paddingTop: top, justifyContent: "center" }}
+    >
       <Text
-        style={{ textAlign: 'center', fontWeight: 'bold', paddingBottom: 20 }}>
+        style={{ textAlign: "center", fontWeight: "bold", paddingBottom: 20 }}
+      >
         Create An Account
       </Text>
 
