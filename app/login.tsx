@@ -19,9 +19,7 @@ export default function LoginScreen() {
       'Please fill in all fields',
     )
 
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      router.replace('/(app)/(tabs)/')
-    }).catch((error) => {
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => router.replace('/(app)/(tabs)')).catch((error) => {
       const errorMessage = error.message
       Alert.alert(
         'Error',

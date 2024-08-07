@@ -4,7 +4,7 @@ import { Button, Text } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function LandingScreen() {
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   return (
     <SafeAreaView
@@ -25,9 +25,9 @@ export default function LandingScreen() {
         React Native Firebase Chat
       </Text>
 
-      <View style={{ paddingBottom: 50 }}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
-          style={{ marginBottom: 10 }}
+          style={{ marginBottom: 10, minWidth: 150 }}
           mode="elevated"
           onPress={() => router.push("/login")}
         >

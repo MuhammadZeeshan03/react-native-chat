@@ -20,7 +20,7 @@ export default function RegisterScreen() {
     )
 
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      router.replace('/(app)/(tabs)/')
+      router.replace('/(app)/(tabs)')
     }).catch((error) => {
       const errorMessage = error.message
       Alert.alert(

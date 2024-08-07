@@ -2,7 +2,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import { router } from "expo-router";
+import { Href, router } from "expo-router";
 import {
   collection,
   getFirestore,
@@ -46,7 +46,7 @@ export default function HomeScreen() {
     return () => unsubscribe();
   }, []);
 
-  const createChat = () => router.push("/chat/search");
+  const createChat = () => router.push('/chat/search' as Href);
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: top }}>

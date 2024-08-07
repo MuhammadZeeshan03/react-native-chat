@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Link, Tabs, router } from "expo-router";
-import { Pressable } from 'react-native'
+import { Tabs, router } from "expo-router";
 import { getAuth } from 'firebase/auth'
 import { getApp } from 'firebase/app'
 import { doc, getFirestore, setDoc } from "firebase/firestore";
-import { Text } from "react-native-paper";
-
+import { Text } from 'react-native';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StyleSheet, View } from 'react-native';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { top } = useSafeAreaInsets();
   const [isLoading, setIsLoading] = useState(false)
   const app = getApp();
 
@@ -35,7 +36,11 @@ export default function TabLayout() {
 
   })
 
-  if (isLoading) return <Text style={{ paddingTop: 10 }}>Loading ...</Text>
+  if (isLoading) return <View style={styles.loadingContainer}>
+    <Text style={styles.loadingText}>
+      Loading ...
+      </Text>
+  </View>
 
   return (
     <Tabs
@@ -48,20 +53,35 @@ export default function TabLayout() {
         options={{
           title: 'Messages',
           headerShown: false,
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name={'document'} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={'document'} color={focused ? 'lightblue' : color} />
           ),
         }}
       />
+
       <Tabs.Screen
         name="settings"
         options={{
           title: 'settings',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={'code'} color={color} />
+            <TabBarIcon name={'settings'} color={focused ? 'lightblue' : color} />
           ),
         }}
       />
     </Tabs>
   );
 }
+
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  loadingText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20
+  }
+})

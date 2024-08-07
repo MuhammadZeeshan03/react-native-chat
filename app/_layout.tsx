@@ -21,7 +21,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-initializeAuth(app, {
+
+!app && initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
 });
 getFirestore(app);
@@ -60,7 +61,6 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="(app)/(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="(app)/chat" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           <Stack.Screen name="landing" options={{ headerShown: false }} />
           <Stack.Screen
             name="login"
@@ -80,7 +80,6 @@ export default function RootLayout() {
           />
         </Stack>
       </ThemeProvider>
-
     </PaperProvider>
   );
 }
