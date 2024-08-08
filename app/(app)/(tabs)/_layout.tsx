@@ -20,7 +20,6 @@ export default function TabLayout() {
 
   getAuth(app).onAuthStateChanged((user) => {
     setIsLoading(false);
-    console.log("USERR", user);
 
     if (user) {
       setDoc(
@@ -71,6 +70,19 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={"settings"}
+              color={focused ? "lightblue" : color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="camera"
+        options={{
+          title: "Camera",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={"camera"}
               color={focused ? "lightblue" : color}
             />
           ),
