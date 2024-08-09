@@ -6,13 +6,14 @@ jobs:
     name: Prettier
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: bahmutov/npm-install@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - run: npm run format
-      - run: git status
-      # commit any changed files
-      #  https://github.com/MuhammadZeeshan03/react-native-chat
-      - uses: MuhammadZeeshan03/react-native-chat@main
-        env: 
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Run Prettier
+        run:  npm run format
+
+      - name: Check for changes
+        run: git status
